@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 function Body() {
   const [pokemonList, setPokemonList] = useState([]);
-
+  const [clickedPokemon,setClickedPokemon]=useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,12 +37,23 @@ function Body() {
     fetchData();
   }, []);
 
+  function handlePokemonClick(name){
+    // randomize the indexes of pokemon.
+    console.log(name)
+    if(clickedPokemon.has(name)){
+        console.log("has!!");
+    }else{
+        setClickedPokemon(p=>[...clickedPokemon,name]);
+    }
+    
+  }
+
   return (
     <div className="pokemon-grid">
       {pokemonList.map((poke, index) => (
         <div key={index} className="grid-item">
-          <p>Name: {poke.name}</p>
-          <img src={poke.image} alt={poke.name} />
+          <p>{poke.name}</p>
+          <img src={poke.image} alt={poke.name} onClick={()=>{handlePokemonClick(poke.name)}}/>
         </div>
       ))}
     </div>
