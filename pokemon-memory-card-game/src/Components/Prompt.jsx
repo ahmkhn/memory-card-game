@@ -1,15 +1,15 @@
 function Prompt(props){
     function x(){
-        window.confirm("You lost :(, thanks for playing!");
-        setInterval(()=>{
+        const userConfirm=window.confirm("You lost :(, thanks for playing!");
+        if(userConfirm){
             window.location.reload();
-        },0)   
+        }
     }
     function y(){
-        window.confirm("Pat yourself on the back you won! :) You have a great memory!");
-        setTimeout(()=>{
+        const userConfirm=window.confirm("Pat yourself on the back you won! :) You have a great memory!");
+        if(userConfirm){
             window.location.reload();
-        },0)   
+        }
     }
     if(props.gameCompleted){
         return(

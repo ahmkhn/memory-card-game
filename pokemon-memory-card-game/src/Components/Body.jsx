@@ -44,6 +44,7 @@ function Body() {
     setGameOver(g=>true);
     setClickedPokemon(p=>[]);
     setUnique(0);
+    setGameCompleted(g=>false);
   }
   function handlePokemonClick(name){
     // randomize the indexes of pokemon.

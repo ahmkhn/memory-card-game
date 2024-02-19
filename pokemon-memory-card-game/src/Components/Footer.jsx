@@ -1,7 +1,8 @@
+import '../styles/footer.css'
 function Footer(){
     return(
-        <div>
-            
+        <div className="footer-div">
+            Website designed by Ahmed Khan, no copyright infringement intended.
         </div>
     );
 }
