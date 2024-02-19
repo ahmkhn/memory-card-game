@@ -18,16 +18,31 @@ function Body(){
                 if(!apiReturn.ok){
                     throw new Error("Error in pokemon name");
                 }
-                let apiData = apiReturn.json();
-                console.log(apiData.sprites.front_shiny);
+                let data = await(apiReturn.json());
+
                 setPokemon(p=>({
-                    name:apiData.name,
-                    image:apiData.sprites.front_shiny
+                    name:data.name,
+                    image:data.sprites.shiny,
                 }));
                 setPokemonList(p=>[...pokemonList,{pokemon}]);
 
                 apiReturn = await fetch("https://pokeapi.co/api/v2/pokemon/lucario")
-                console.log(apiData);
+                data=await(apiReturn.json());
+                setPokemon(p=>({
+                    name:data.name,
+                    image:data.sprites.shiny,
+                }));
+                setPokemonList(p=>[...pokemonList,{pokemon}]); // 2nd pokemon
+
+                apiReturn = await fetch("https://pokeapi.co/api/v2/pokemon/salamander")
+                data=await(apiReturn.json());
+                setPokemon(p=>({
+                    name:data.name,
+                    image:data.sprites.shiny,
+                }));
+                setPokemonList(p=>[...pokemonList,{pokemon}]); // 3rd pokemon
+
+
             }
             catch(error){
                 console.error(error);
