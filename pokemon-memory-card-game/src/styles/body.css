@@ -1,0 +1,10 @@
+.grid-container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+.grid-item{
+    text-align:center;
+    padding:16px;
+    border: 1px solid #ccc;
+}
