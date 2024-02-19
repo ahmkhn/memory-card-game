@@ -7,7 +7,7 @@ function Prompt(props){
     }
     function y(){
         window.confirm("Pat yourself on the back you won! :) You have a great memory!");
-        setInterval(()=>{
+        setTimeout(()=>{
             window.location.reload();
         },0)   
     }
