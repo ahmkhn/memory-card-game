@@ -1,10 +1,12 @@
 import '../styles/body.css';
 import { useState, useEffect } from 'react';
-
+import Prompt from './Prompt';
 function Body() {
   const [pokemonList, setPokemonList] = useState([]);
   const [clickedPokemon,setClickedPokemon]=useState([]);
   const [unique,setUnique]=useState(0);
+  const[gameOver,setGameOver]=useState(false);
+  const [gameCompleted,setGameCompleted]=useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,7 +26,7 @@ function Body() {
 
           return {
             name: data.name,
-            image: data.sprites.front_shiny,
+            image: data.sprites.other.showdown.front_shiny,
           };
         });
 
@@ -39,7 +41,9 @@ function Body() {
   }, []);
 
   function handleLoss(){
-    console.log("ran");
+    setGameOver(g=>true);
+    setClickedPokemon(p=>[]);
+    setUnique(0);
   }
   function handlePokemonClick(name){
     // randomize the indexes of pokemon.
@@ -47,22 +51,25 @@ function Body() {
     for(let i=0;i<clickedPokemon.length+1;i++){
         if(clickedPokemon[i]==name){
             handleLoss();
+            break;
         }else{
+            if(unique==8){
+                setGameCompleted(g=>true);
+            }
             setClickedPokemon(p=>[...clickedPokemon,name]);
-            
             let shuffled = pokemonList
                 .map(value => ({ value, sort: Math.random() }))
                 .sort((a, b) => a.sort - b.sort)
                 .map(({ value }) => value)
             
             setPokemonList(p=>shuffled);
+            setUnique(p=>unique+1);
         }
     }
   }
-
-
   return (
     <div>
+        <Prompt gameOver={gameOver} gameCompleted={gameCompleted}/>
         <h2 className="counter">Unique Pokemon Clicked: {unique}</h2>
         <div className="pokemon-grid">
             {pokemonList.map((poke, index) => (
