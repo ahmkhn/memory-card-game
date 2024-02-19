@@ -1,0 +1,17 @@
+*{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.header-div{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+h2{
+    margin:0;
+}
+h1{
+    margin-bottom: 0;
+}
